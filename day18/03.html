@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // let xiaozhang ={
+        //     name:'xiaozhang',
+        //     age:'21',
+        //     run:function(){
+        //         console.log(this.name+' is running...')
+        //     }
+        // }
+        // let xiaozhu={
+        //     name:'xiaozhu'
+        // }
+        // xiaozhu.__proto__ = xiaozhang;
+        // let student = {
+        //     name:'xiaozhang',
+        //     age:21,
+        //     hobits:['听歌','玩游戏','羽毛球']
+        // }
+        // function createStudent(name){
+        //     var s =Object.create(student);
+        //     s.name = name;
+        //     return s;
+        // }
+        // let xiaozhu = createStudent('xiaozhu');
+        // xiaozhu.__proto__ === student;
+
+
+
+
+
+        // let Student = function(props){
+        //     this.name = props.name||'Unnamed';
+        // }
+        // Student.prototype.say =function(){
+        //     return `Hello, ${this.name}!`;
+        // }
+        // let PramaryStudent = function(props){
+        //     Student.call(this,props);
+        //     this.age = props.age|1;
+        // }
+        // let F =function(){};
+        // F.prototype = Student.prototype;
+        // PramaryStudent.prototype = new F();
+        // PramaryStudent.prototype.constructor = PramaryStudent;
+
+        // let xiaozhang = new PramaryStudent({
+        //     name:'xiaozhang',
+        //     age:'21'
+        // });
+
+
+        
+        // function inherist(Child,Parent){
+        //     let F =function(){};
+        //     F.prototype = Parent.prototype;
+        //     Child.prototype = new F();
+        //     Child.prototype.constructor = Child;
+        // }
+        // let Student = function(props){
+        //     this.name = props.name||'Unnamed';
+        // }
+        // Student.prototype.say =function(){
+        //     return `Hello, ${this.name}!`;
+        // }
+        // let PramaryStudent = function(props){
+        //     Student.call(this,props);
+        //     this.age = props.age|1;
+        // }
+        // inherist(PramaryStudent,Student);
+        // let xiaozhu = new PramaryStudent({
+        //     name:'xiaozhu',
+        //     age:'22',
+        //     hobits:'玩游戏'
+        // })
+
+
+        class Student{
+            constructor(name,...args){
+                this.name = name;
+                this.args = args;
+            }
+            say(){
+                return `Hello, ${this.name}!`
+            }
+        }
+        let xiaozhang = new Student(
+            name='xiaozhang',
+            age='21',
+            hobits=['玩游戏','听歌','羽毛球']
+        );
+        class PrimaryStudent extends Student{
+            constructor(name,grade,...args){
+                super(name,...args)
+                this.grade = grade;
+            }
+            myGrade(){
+                return `I am ${this.grade}`
+            }
+        }
+        let xiaozhu = new PrimaryStudent(
+            name='xiaozhu',
+            grade='大三',
+            age=22,
+            hobits=['玩游戏','看剧','爬山'],
+            
+        );
+
+
+        // class Student{
+        //     constructor(name){
+        //         this.name = name;
+        //     }
+        //     say(){
+        //         return `Hello, ${this.name}!`
+        //     }
+        // }
+        // let xiaozhang = new Student('xiaozhang');
+        // class PrimaryStudent extends Student{
+        //     constructor(name,grade){
+        //         super(name);
+        //         this.grade = grade;
+        //     }
+        //     myGrade(){
+        //         return `I am ${this.grade}`
+        //     }
+        // }
+        // let xiaozhu = new PrimaryStudent(
+        //     name:'xiaozhu',
+        //     grade:'大三'
+        // )
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
