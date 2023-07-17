@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div>
+        <label>
+            <input type="radio" name="weekday" id="one" value="1" checked="checked">星期一
+            <input type="radio" name="weekday" id="two" value="2">星期二
+        </label>
+    </div> -->
+
+    <form id="test-register" action="#" target="_blank" onsubmit="return checkRegisterForm()">
+        <p id="test-error" style="color:red"></p>
+        <p>
+            用户名: <input type="text" id="username" name="username">
+        </p>
+        <p>
+            口令: <input type="password" id="password">
+            <input type="hidden" id="pwdhidden" name="password">
+        </p>
+        <p>
+            重复口令: <input type="password" id="password-2">
+        </p>
+        <p>
+            <button type="submit">提交</button> <button type="reset">重置</button>
+        </p>
+    </form>
+</body>
+<script>
+    // let one = document.getElementById("one");
+    // let two = document.getElementById("two");
+    // console.log(one.value);
+    // two.value = "3";
+    // console.log(two.value);
+
+    // console.log(one.checked);
+    // console.log(two.checked);
+    // two.checked = true;
+
+
+    var checkRegisterForm = function () {
+        let username = document.getElementById("username").value;
+        let password_1 = document.getElementById("password").value;
+        let pwdhidden = document.getElementById("pwdhidden").value;
+        let password_2 = document.getElementById("password-2").value;
+        let user = /\w{3,10}/;
+        let pwd = /\w{6,20}/
+        if(!user.test(username)){
+        console.log("用戶名格式不對"+username);
+        return false;
+        }else if(!pwd.test(password_1)){
+        console.log("口令格式不對"+password_1)
+        return false;
+        }else if(password_1!==password_2){
+        console.log("兩次口令必須相同！！");
+        return false;
+        }else{
+        return true;
+        }
+        pwdhidden = toMD5(password_1)
+    };
+    (function () {
+        window.testFormHandler = checkRegisterForm;
+        var form = document.getElementById('test-register');
+        if (form.dispatchEvent) {
+            var event = new Event('submit', {
+                bubbles: true,
+                cancelable: true
+            });
+            form.dispatchEvent(event);
+        } else {
+            form.fireEvent('onsubmit');
+        }
+    })();
+</script>
+</html>
